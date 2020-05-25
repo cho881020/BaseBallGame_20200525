@@ -73,6 +73,9 @@ public class MainActivity extends BaseActivity {
 //                ?S ?B인지 계산하고 답장하자.
                 checkStrikeAndBalls(inputValue);
 
+//                입력칸 내용 초기화
+                binding.numEdt.setText("");
+
 
             }
         });
