@@ -200,19 +200,28 @@ public class MainActivity extends BaseActivity {
 
 //        3S라면 축하메세지 + 몇번만에 맞췄는지 + 입력 불가하도록 막아주기.
         if (strikeCount == 3) {
-            messages.add(new Message("정답입니다!", "Cpu"));
-            messages.add(new Message(String.format("%d회만에 맞췄습니다.", tryCount), "Cpu"));
 
-            messageAdapter.notifyDataSetChanged();
-            binding.messageListView.smoothScrollToPosition(messages.size()-1);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    messages.add(new Message("정답입니다!", "Cpu"));
+                    messages.add(new Message(String.format("%d회만에 맞췄습니다.", tryCount), "Cpu"));
+
+                    messageAdapter.notifyDataSetChanged();
+                    binding.messageListView.smoothScrollToPosition(messages.size()-1);
 
 
 //            EditText와 버튼을 더이상 사용하지못하도록 막아주는 코드
-            binding.numEdt.setEnabled(false);
-            binding.sendBtn.setEnabled(false);
+                    binding.numEdt.setEnabled(false);
+                    binding.sendBtn.setEnabled(false);
 
 //            종료 안내 토스트
-            Toast.makeText(mContext, "이용해 주셔서 감사합니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "이용해 주셔서 감사합니다.", Toast.LENGTH_SHORT).show();
+
+                }
+            }, 1000);
+
 
         }
 
